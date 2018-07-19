@@ -1,5 +1,4 @@
 const { Model } = require("objection");
-const Interview = require('./interview');
 const path = require("path");
 
 class User extends Model {
@@ -16,7 +15,16 @@ class User extends Model {
           from: 'users.id',
           to: 'interviews.user_id'
         }
-      }
+      },
+      goal: {
+        relation: Model.HasManyRelation,
+        modelClass: path.join(__dirname, "goal"),
+        join: {
+          from: 'users.id',
+          to: 'goals.user_id'
+        }
+      },
+      
     }
   }
 }

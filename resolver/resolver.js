@@ -2,6 +2,7 @@ const { ApolloError } = require("apollo-error");
 const User = require("./../models/user");
 const Reqruitor = require("./../models/recruitor");
 const Interview = require("./../models/interview");
+const Goal = require("./../models/goal");
 
 
 const resolvers = {
@@ -36,6 +37,15 @@ const resolvers = {
       const data_interview = Interview
       .query()
       .eager("users")
+            
+      return data_interview
+    },
+    goals(_, args) {
+      const data_interview = Goal
+      .query()
+      .eager("users")
+      .then((hehe)=>console.log(hehe)
+      )
             
       return data_interview
     },

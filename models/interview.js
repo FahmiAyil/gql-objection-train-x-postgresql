@@ -25,7 +25,7 @@ class Interview extends Model {
           to: "users.id"
         }
       },
-      entries: {
+      recruitor: {
         relation: Model.BelongsToOneRelation,
         // modelClass: Entry,
         modelClass: path.join(__dirname, "recruitor"),

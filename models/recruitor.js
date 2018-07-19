@@ -9,7 +9,7 @@ class Recruitor extends Model {
     return {
       interview: {
         relation: Model.HasManyRelation,
-        modelClass: Interview,
+        modelClass: path.join(__dirname, "interview"),
         join: {
           from: 'recruitors.id',
           to: 'interviews.user_id'

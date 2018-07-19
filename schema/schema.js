@@ -5,6 +5,7 @@ const typeDefs = `
     recruitors: [Recruitor]
     getOneRecruitor(name: String): Recruitor
     interviews: [Interview]
+    goals: [Goal]
   }
 
   type Mutation {
@@ -61,6 +62,16 @@ const typeDefs = `
     place:String
     time:String
     type:String
+  }
+
+  type Goal {
+    id: Int!
+    user_id: Int!
+    reqruitor_id: Int!
+    interview_id: Int!
+    acceptor: Int!
+    referal: Int!
+    users: User
   }
   `;
 
