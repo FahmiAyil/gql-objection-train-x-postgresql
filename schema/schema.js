@@ -4,11 +4,13 @@ const typeDefs = `
     getOneUser(code: String!): User
     recruitors: [Recruitor]
     getOneRecruitor(name: String): Recruitor
+    interviews: [Interview]
   }
 
   type Mutation {
     addUser(input: UserReq): User
     addRecruitor(input: RecReq): Recruitor
+    addInterview(input: IntReq): Interview
   }
 
   type User {
@@ -41,6 +43,24 @@ const typeDefs = `
     email:String
     hp:String
     principal:String
+  }
+  
+  type Interview {
+    id: Int!
+    user_id: Int!
+    reqruitor_id: Int!
+    place: String
+    time: String
+    type: String
+    users: User
+    recruitors: Recruitor
+  }
+  input IntReq {
+    user_id:Int!
+    recruitor_id:Int!
+    place:String
+    time:String
+    type:String
   }
   `;
 

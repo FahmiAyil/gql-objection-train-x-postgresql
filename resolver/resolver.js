@@ -1,6 +1,7 @@
 const { ApolloError } = require("apollo-error");
 const User = require("./../models/user");
 const Reqruitor = require("./../models/recruitor");
+const Interview = require("./../models/interview");
 
 
 const resolvers = {
@@ -29,11 +30,19 @@ const resolvers = {
         .query()
         .where('name', args.name)
       return handleFinish.pop();
-    }
+    },
+
+    interviews(_, args) {
+      const data_interview = Interview
+      .query()
+      .eager("users")
+            
+      return data_interview
+    },
   },
 
 
-  
+
   Mutation: {
     async addUser(_, args) {
       const addquery = await User
@@ -68,6 +77,26 @@ const resolvers = {
       const handleFinish = await Reqruitor
         .query()
         .where('name', args.input.name)
+      
+      console.log('============================', handleFinish);
+        
+      return handleFinish.pop();
+    },
+
+    async addInterview(_, args) {
+      const addquery = await Interview
+        .query()
+        .insert({ 
+          user_id: args.input.user_id, 
+          recruitor_id: args.input.recruitor_id, 
+          place: args.input.place,
+          time: args.input.time,
+          type: args.input.type
+        });
+      
+      const handleFinish = await Reqruitor
+        .query()
+        .where('id', args.input.id)
       
       console.log('============================', handleFinish);
         
