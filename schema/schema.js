@@ -1,11 +1,14 @@
 const typeDefs = `
   type Query {
     users: [User]
-    getOneUser(id: Int!): User
+    getOneUser(code: String!): User
+    recruitors: [Recruitor]
+    getOneRecruitor(name: String): Recruitor
   }
 
   type Mutation {
     addUser(input: UserReq): User
+    addRecruitor(input: RecReq): Recruitor
   }
 
   type User {
@@ -23,6 +26,21 @@ const typeDefs = `
     email: String
     hp: String
     skill: String
+  }
+
+  type Recruitor {
+    id: Int!
+    name:String
+    email:String
+    hp:String
+    principal:String
+  }
+
+  input RecReq {
+    name:String
+    email:String
+    hp:String
+    principal:String
   }
   `;
 
